@@ -1,143 +1,124 @@
-<!DOCTYPE html>
-<html lang="af">
-<head>
-<meta charset="UTF-8">
-<title>Dating App</title>
-
-<style>
-body {
-    font-family: Arial;
-    background: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    width: 350px;
-    height: 550px;
-    position: relative;
-}
-
-.card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    overflow: hidden;
-    cursor: grab;
-    transition: transform 0.3s;
-}
-
-.card img {
-    width: 100%;
-    height: 65%;
-    object-fit: cover;
-}
-
-.info {
-    padding: 15px;
-}
-
-h2 {
-    margin: 0;
-}
-
-.tag {
-    display: inline-block;
-    background: #e0ffe0;
-    padding: 5px 8px;
-    border-radius: 10px;
-    margin: 3px;
-    font-size: 12px;
-}
-
-.red {
-    background: #ffe0e0;
-}
-
-.buttons {
-    position: absolute;
-    bottom: -70px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.like {
-    background: #4CAF50;
-    color: white;
-}
-
-.nope {
-    background: #f44336;
-    color: white;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <!-- CARD 1 -->
-    <div class="card" id="card">
-        <img src="foto1.jpg">
-
-        <div class="info">
-            <h2>Ruan van der Merwe, 28</h2>
-            <p>Boer met perde</p>
-
-            <p>Rustige ou wat lief is vir perde, natuur en egte mense.</p>
-
-            <strong>Green Flags:</strong><br>
-            <span class="tag">Empaties</span>
-            <span class="tag">Saggeaard</span>
-            <span class="tag">Opreg</span>
-
-            <br><br>
-
-            <strong>Red Flags:</strong><br>
-            <span class="tag red">Gee te veel</span>
-            <span class="tag red">Sukkel met grense</span>
-        </div>
-    </div>
-
-</div>
-
-<div class="buttons">
-    <button class="nope" onclick="swipeLeft()">❌ Nope</button>
-    <button class="like" onclick="swipeRight()">❤️ Like</button>
-</div>
-
 <script>
-let card = document.getElementById("card");
 
-function swipeRight() {
-    card.style.transform = "translateX(400px) rotate(20deg)";
-    setTimeout(resetCard, 300);
+let profiles = [
+
+{
+name: "Frik van Tonder, 31",
+job: "Diesel Mechanic",
+bio: "Ek’s ’n eenvoudige ou met ’n rowwe buitekant, maar ’n sagte hart. Ek hou van die buitelewe en dinge met my hande doen.",
+img: "Alyssa.jpg",
+green: ["Eerlik","Liefdevol","Kan sing"],
+red: ["Stress eater","Bietjie lui","Sit ander eerste"]
+},
+
+{
+name: "Dante Morelli, 32",
+job: "Handwerker",
+bio: "Ek werk hard en glo in eerlikheid en lojaliteit. Ek bou eerder my eie meubels as om dit te koop.",
+img: "Anneke.jpg",
+green: ["Eerlik","Lojaal","Hardwerkend"],
+red: ["Word vinnig kwaad"]
+},
+
+{
+name: "Mason, 29",
+job: "Gym Junkie",
+bio: "Ek werk aan myself fisies en emosioneel. Ek luister en gee om vir mense.",
+img: "Bianca.jpg",
+green: ["Empaties","Liefdevol","Lojaal"],
+red: ["Té sag","Raak maklik afgelei"]
+},
+
+{
+name: "Ryno De Almeida, 35",
+job: "See Kaptein",
+bio: "Ek leef vir die see en glo daarin om dinge beter te los as wat ek dit gekry het.",
+img: "Danel.jpg",
+green: ["Lojaal","Hardwerkend"],
+red: ["OCD","Sit ander eerste"]
+},
+
+{
+name: "Nico Botha, 31",
+job: "Professional relaxer 😎",
+bio: "Ek vang vis en lewe die lewe rustig... maar ek kan tricky wees 😉",
+img: "Heilani.jpg",
+green: ["Sag hart","Laat mense lag"],
+red: ["Maak min effort","Mood swings"]
+},
+
+{
+name: "Logan Long, 30",
+job: "Stripper",
+bio: "Fun mens wat die lewe geniet. Niks is permanent nie—geniet net die ride 😉",
+img: "Jolandi.jpg",
+green: ["Geduldig","Vriendelik"],
+red: ["Jaloers","Eiewys"]
+},
+
+{
+name: "Liam Jansen, 29",
+job: "Pastoor / Blogger",
+bio: "Ek glo in groei, geloof en mense. Ek hou van reis en stories vertel.",
+img: "Karrie.jpg",
+green: ["Loyaal","Vriendelik"],
+red: ["Rook","Vermy konflik"]
+},
+
+{
+name: "Hank Dutton, 28",
+job: "Boer met perde",
+bio: "Rustige ou wat die eenvoudige dinge waardeer en diep omgee vir mense.",
+img: "Mamma.jpg",
+green: ["Empaties","Saggeaard","Opreg"],
+red: ["Sukkel met grense","Skaam"]
+},
+
+{
+name: "Adolf van Rhijn, 33",
+job: "Manager",
+bio: "Rustig, lojaal en vrygewig. Hou van spoed en goeie geselskap.",
+img: "Mariena.jpg",
+green: ["Saggeaard","Vrygewig"],
+red: ["Hou van spoed","Eet te veel stysel"]
+},
+
+{
+name: "Mark van der Merwe, 31",
+job: "Wildbewaarder",
+bio: "Ek leef vir natuur en kennis. Hou van boeke en plante.",
+img: "Noela.jpg",
+green: ["Toegewyd","Kreatief"],
+red: ["Oor-dink","Hard op myself"]
+},
+
+{
+name: "Willem Kruger, 32",
+job: "Toergids",
+bio: "Gedrewe en gefokus. Ek maak dinge gebeur.",
+img: "Ouma.jpg",
+green: ["Lojaal","Betroubaar"],
+red: ["Ongeduldig","FOMO"]
+},
+
+{
+name: "Dante Belle, 26",
+job: "N.v.t",
+bio: "Sag van hart maar intens. Ek is nie perfek nie, maar eg.",
+img: "Veronique.jpg",
+green: ["Saggeaard","Liefdevol"],
+red: ["Mood swings","My way or highway"]
+},
+
+{
+name: "Adrian Voss, 28",
+job: "N.v.t",
+bio: "Ek neem alles ernstig op. Dis my manier of niks.",
+img: "Zettie.jpg",
+green: ["Groot hart"],
+red: ["Kort geduld","Aggressief"]
 }
 
-function swipeLeft() {
-    card.style.transform = "translateX(-400px) rotate(-20deg)";
-    setTimeout(resetCard, 300);
-}
+];
 
-function resetCard() {
-    card.style.transform = "translateX(0)";
-}
 </script>
-
-</body>
-</html>
