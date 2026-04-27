@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<title>Dating App</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 350px;
+    height: 550px;
+    position: relative;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    overflow: hidden;
+    cursor: grab;
+    transition: transform 0.3s;
+}
+
+.card img {
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+}
+
+.info {
+    padding: 15px;
+}
+
+h2 {
+    margin: 0;
+}
+
+.tag {
+    display: inline-block;
+    background: #e0ffe0;
+    padding: 5px 8px;
+    border-radius: 10px;
+    margin: 3px;
+    font-size: 12px;
+}
+
+.red {
+    background: #ffe0e0;
+}
+
+.buttons {
+    position: absolute;
+    bottom: -70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.like {
+    background: #4CAF50;
+    color: white;
+}
+
+.nope {
+    background: #f44336;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- CARD 1 -->
+    <div class="card" id="card">
+        <img src="foto1.jpg">
+
+        <div class="info">
+            <h2>Ruan van der Merwe, 28</h2>
+            <p>Boer met perde</p>
+
+            <p>Rustige ou wat lief is vir perde, natuur en egte mense.</p>
+
+            <strong>Green Flags:</strong><br>
+            <span class="tag">Empaties</span>
+            <span class="tag">Saggeaard</span>
+            <span class="tag">Opreg</span>
+
+            <br><br>
+
+            <strong>Red Flags:</strong><br>
+            <span class="tag red">Gee te veel</span>
+            <span class="tag red">Sukkel met grense</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="buttons">
+    <button class="nope" onclick="swipeLeft()">❌ Nope</button>
+    <button class="like" onclick="swipeRight()">❤️ Like</button>
+</div>
+
+<script>
+let card = document.getElementById("card");
+
+function swipeRight() {
+    card.style.transform = "translateX(400px) rotate(20deg)";
+    setTimeout(resetCard, 300);
+}
+
+function swipeLeft() {
+    card.style.transform = "translateX(-400px) rotate(-20deg)";
+    setTimeout(resetCard, 300);
+}
+
+function resetCard() {
+    card.style.transform = "translateX(0)";
+}
+</script>
+
+</body>
+</html>
